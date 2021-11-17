@@ -2,4 +2,4 @@
 
 recuerden ejecutar 
 
-nmp install
+npm install
