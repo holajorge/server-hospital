@@ -10,7 +10,7 @@ const login = async (req, res = response) =>{
     try{
         // buscar si hay considencias
         const usuario = await User.findOne({email});
-        console.log(usuario);
+        // console.log(usuario);
         if(!usuario){
             return res.status(404).json({ok:false, msg: 'Email no valido'})
         }

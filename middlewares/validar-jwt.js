@@ -11,15 +11,15 @@ const validarJWT = (req,res=response, next)=>{
     }
 
     try{
-        // console.log(token);
+        console.log('primero pasa qui');
         // console.log(process.env.JWT_SECRET);
         jwt.verify(token, process.env.JWT_SECRET, function(err, decoded){
             if(err){
                 console.log(err);
             }else{
                 const {user_id} = decoded;
+                console.log('ID user:',user_id);
                 req.user_id = user_id;
-                console.log(user_id);
                 next();
 
             }
