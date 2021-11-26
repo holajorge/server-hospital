@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const validarJWT = (req,res=response, next)=>{
 
     // LEER TOKEN
-    const token = req.header('x-token');
+    const token = req.header('x-token'); 
     
     if(!token){
         return res.status(401).json({ok:false, msg: 'No  hay token en la peticion'})
@@ -15,7 +15,9 @@ const validarJWT = (req,res=response, next)=>{
         // console.log(process.env.JWT_SECRET);
         jwt.verify(token, process.env.JWT_SECRET, function(err, decoded){
             if(err){
-                console.log(err);
+                console.log('errogggr',err);
+                return res.status(401).json({ok:false, msg: 'Token mal formado', err});
+
             }else{
                 const {user_id} = decoded;
                 console.log('ID user:',user_id);

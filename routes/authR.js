@@ -3,9 +3,11 @@
 */
 const {Router} = require('express');
 const router = Router();
-const {login, googleSignIn} = require('../controllers/authCtrl');
+const {login, googleSignIn, renewToken} = require('../controllers/authCtrl');
 const {check} = require('express-validator');
 const {validaCompos} = require('../middlewares/validar-campos');
+
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 const validados = [ //midelware
     check('email', 'El email es obligatorio').not().isEmpty(),
@@ -18,6 +20,7 @@ router.post('/google',
     ],googleSignIn
 );
 
+router.get('/renew', [validarJWT],renewToken);
 
 
 
